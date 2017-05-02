@@ -1,0 +1,17 @@
+
+machine:
+  python:
+    version: 2.7.12
+    
+test:
+  post:
+    - python project.py
+    - cat /tmp/monfichier.txt | wc -l
+    
+deployment:
+  automerge:
+    branch: [uat]
+    commands:
+      - git checkout master
+      - git merge uat
+      - git push origin master
